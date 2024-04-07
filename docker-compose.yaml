@@ -1,13 +1,63 @@
 version: '3'
 
 services:
+  db:
+    image: postgres:13.3-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./BACK/.env
+
   django:
-      build: .
-      command: python manage.py runserver 0.0.0.0:8088
-      volumes:
-        - .:/source
-      ports:
-        - '8088:8088'
-      env_file:
-        - .env
-      restart: on-failure
+    build: ./BACK
+    command: python manage.py runserver 0.0.0.0:8088
+    volumes:
+      - ./BACK:/source
+    ports:
+      - '8088:8088'
+    depends_on:
+      - db
+    env_file:
+      - ./BACK/.env
+    restart: on-failure
+
+  redis:
+    image: redis:alpine
+    restart: on-failure
+    ports:
+      - "6380:6379"
+
+  celery_beat:
+    command: celery -A devit_proj_backend beat -l info
+    build: ./BACK
+    environment:
+      - CELERY_REDIS=${CELERY_RESULT_BACKEND}
+    depends_on:
+      - redis
+      - django
+    env_file:
+      - ./BACK/.env
+
+    volumes:
+      - ./BACK:/source
+    restart: on-failure
+
+  celery_worker:
+    command: celery -A devit_proj_backend worker -l info
+    build: ./BACK
+    environment:
+      - CELERY_REDIS="${CELERY_RESULT_BACKEND}"
+    depends_on:
+      - redis
+      - django
+    env_file:
+      - ./BACK/.env
+    volumes:
+      - ./BACK:/source
+    restart: on-failure

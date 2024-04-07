@@ -7,6 +7,6 @@ RUN mkdir /source
 WORKDIR /source
 
 COPY . /source/
-COPY ./BACK/requirements.txt /usr/src/requirements.txt
+COPY ./requirements.txt /usr/src/requirements.txt
 
 RUN pip install -r /usr/src/requirements.txt
