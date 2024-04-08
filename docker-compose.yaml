@@ -6,9 +6,9 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: "${DB_NAME}"
-      POSTGRES_USER: "${DB_USER}"
-      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: ${DB_NAME1}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     env_file:
@@ -16,7 +16,7 @@ services:
 
   django:
     build: ./BACK
-    command: python manage.py runserver 0.0.0.0:8088
+    command: /docker-entrypoint.sh python manage.py runserver 0.0.0.0:8088
     volumes:
       - ./BACK:/source
     ports:
@@ -52,7 +52,7 @@ services:
     command: celery -A devit_proj_backend worker -l info
     build: ./BACK
     environment:
-      - CELERY_REDIS="${CELERY_RESULT_BACKEND}"
+      - CELERY_REDIS=${CELERY_RESULT_BACKEND}
     depends_on:
       - redis
       - django
