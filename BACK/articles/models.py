@@ -8,3 +8,4 @@ class Article(models.Model):
     description = models.TextField(blank=False, null=False, verbose_name="Description")
     published_date = models.DateTimeField(blank=False, null=False, verbose_name="Date of publishing")
     media_link = models.URLField(blank=False, null=False, verbose_name="Picture link")
+    created_at = models.DateTimeField(auto_now_add=True)
