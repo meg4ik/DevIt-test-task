@@ -128,6 +128,12 @@ REST_FRAMEWORK = {
     ],
 }
 
+# Security settings
+CSRF_COOKIE_SAMESITE = 'Strict'
+SESSION_COOKIE_SAMESITE = 'Strict'
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_HTTPONLY = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

@@ -17,8 +17,10 @@ Including another URLconf
 
 
 from rest_framework.routers import SimpleRouter
+from django.urls import path
 
 from articles.api import ArticleViewSet, ArticleAdminViewSet
+from articles.views import login_view, logout_view, session_view
 
 router = SimpleRouter()
 
@@ -26,6 +28,9 @@ router.register(r'articles', ArticleViewSet, basename='articles')
 router.register(r'admin', ArticleAdminViewSet, basename='admin_articles')
 
 urlpatterns = [
+    path('login/', login_view, name='api-login'),
+    path('logout/', logout_view, name='api-logout'),
+    path('session/', session_view, name='api-session'),
 ]
 
 urlpatterns += router.urls
