@@ -1,21 +1,25 @@
-# Project Name
+# Article Management
 
-Article Management
+### Task
 
-## Getting Started
-
-Task:
-'mplement an article management project. Articles should be parsed on schedule form RSS feeds (any of your choice). Articles are managed (CRUD) in the admin panel, access to the admin panel must be closed by authorization. There should also be a public route that displays a list of articles with pagination/sorting/search.'
+'Implement an article management project. Articles should be parsed on schedule form RSS feeds (any of your choice). Articles are managed (CRUD) in the admin panel, access to the admin panel must be closed by authorization. There should also be a public route that displays a list of articles with pagination/sorting/search.'
 
 Languages: TypeScript(JS) and Python
+
 Backend framework: Django, DRF
+
 DB: PostgreSQL, Redis
+
 API Protocol: REST
+
 Auth: JWT
+
 Additional: Celery, Celery Beat
 
-Backend framework: NextJS
+Frontend framework: NextJS
+
 Forms: Formik
+
 UI: Tailwind CSS
 
 Environment: Docker, Docker Compose
