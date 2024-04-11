@@ -1,5 +1,3 @@
-// components/Header.js
-
 import Link from 'next/link';
 import RequireAuthentication from './RequireAuthentication';
 

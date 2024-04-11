@@ -3,25 +3,23 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
 
 const LoginForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await fetch('http://127.0.0.1:8088/login/', {
+      const response = await fetch('http://127.0.0.1:8088/api/token/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': cookies.get("csrftoken"),
         },
         body: JSON.stringify(values),
-        credentials: 'same-origin',
       });
+      const data = await response.json();
       if (response.ok) {
+        localStorage.setItem('accessToken', data.access);
+        localStorage.setItem('refreshToken', data.refresh);
         router.push('/admin');
       } else {
         console.error('Login failed');

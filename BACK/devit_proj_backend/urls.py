@@ -20,7 +20,8 @@ from rest_framework.routers import SimpleRouter
 from django.urls import path
 
 from articles.api import ArticleViewSet, ArticleAdminViewSet
-from articles.views import LoginAPIView, LogoutAPIView, CheckAuthenticationAPIView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from articles.views import CheckAuthenticationView
 
 router = SimpleRouter()
 
@@ -28,9 +29,9 @@ router.register(r'articles', ArticleViewSet, basename='articles')
 router.register(r'admin', ArticleAdminViewSet, basename='admin_articles')
 
 urlpatterns = [
-    path('login/', LoginAPIView.as_view(), name='api-login'),
-    path('logout/', LogoutAPIView.as_view(), name='api-logout'),
-    path('check-authentication/', CheckAuthenticationAPIView.as_view(), name='check-authentication'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/check-authentication/', CheckAuthenticationView.as_view(), name='check_authentication'),
 ]
 
 urlpatterns += router.urls
