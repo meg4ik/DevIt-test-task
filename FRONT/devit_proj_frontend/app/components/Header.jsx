@@ -1,4 +1,7 @@
+// components/Header.js
+
 import Link from 'next/link';
+import RequireAuthentication from './RequireAuthentication';
 
 const Header = () => {
   return (
@@ -8,12 +11,17 @@ const Header = () => {
           <Link href='/'>Traversy Media</Link>
         </div>
         <div className='links'>
-          <Link href='/about'>About</Link>
-          <Link href='/about/team'>Our Team</Link>
-          <Link href='/code/repos'>Code</Link>
+          <RequireAuthentication>
+            <Link href='/admin'>Admin</Link>
+            <Link href='/logout'>Logout</Link>
+          </RequireAuthentication>
+          <RequireAuthentication invert={true}>
+            <Link href='/login'>Login</Link>
+          </RequireAuthentication>
         </div>
       </div>
     </header>
   );
 };
+
 export default Header;
