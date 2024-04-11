@@ -11,7 +11,7 @@ const ArticleList = () => {
   const [orderBy, setOrderBy] = useState('-published_date');
 
   const fetchArticles = (page) => {
-    let url = `http://localhost:8088/articles/?page=${page}&ordering=${orderBy}`;
+    let url = `http://127.0.0.1:8088/articles/?page=${page}&ordering=${orderBy}`;
     if (searchQuery) {
       url += `&search=${searchQuery}`;
     }

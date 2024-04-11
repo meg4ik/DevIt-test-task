@@ -16,7 +16,7 @@ const AdminArticleList = () => {
   const token = localStorage.getItem('accessToken');
 
   const fetchArticles = (page) => {
-    let url = `http://localhost:8088/articles/?page=${page}&ordering=${orderBy}`;
+    let url = `http://127.0.0.1:8088/articles/?page=${page}&ordering=${orderBy}`;
     if (searchQuery) {
       url += `&search=${searchQuery}`;
     }
@@ -63,7 +63,7 @@ const AdminArticleList = () => {
 
   const deleteArticle = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8088/admin/${id}/`, {
+      const response = await fetch(`http://127.0.0.1:8088/admin/${id}/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -85,7 +85,7 @@ const AdminArticleList = () => {
 
   const handleSaveArticle = async (article) => {
     try {
-      const response = await fetch(`http://localhost:8088/admin/${article.id}/`, {
+      const response = await fetch(`http://127.0.0.1:8088/admin/${article.id}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

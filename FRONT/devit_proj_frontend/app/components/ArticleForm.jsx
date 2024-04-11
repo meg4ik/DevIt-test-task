@@ -18,7 +18,7 @@ const ArticleForm = ({ onCreate }) => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await fetch('http://localhost:8088/admin/', {
+      const response = await fetch('http://127.0.0.1:8088/admin/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
