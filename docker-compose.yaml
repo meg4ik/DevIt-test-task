@@ -27,37 +27,37 @@ services:
       - ./BACK/.env
     restart: on-failure
 
-  # redis:
-  #   image: redis:alpine
-  #   restart: on-failure
-  #   ports:
-  #     - "6380:6379"
+  redis:
+    image: redis:alpine
+    restart: on-failure
+    ports:
+      - "6380:6379"
 
-  # celery_beat:
-  #   command: celery -A devit_proj_backend beat -l info
-  #   build: ./BACK
-  #   environment:
-  #     - CELERY_REDIS=${CELERY_RESULT_BACKEND}
-  #   depends_on:
-  #     - redis
-  #     - django
-  #   env_file:
-  #     - ./BACK/.env
+  celery_beat:
+    command: celery -A devit_proj_backend beat -l info
+    build: ./BACK
+    environment:
+      - CELERY_REDIS=${CELERY_RESULT_BACKEND}
+    depends_on:
+      - redis
+      - django
+    env_file:
+      - ./BACK/.env
 
-  #   volumes:
-  #     - ./BACK:/source
-  #   restart: on-failure
+    volumes:
+      - ./BACK:/source
+    restart: on-failure
 
-  # celery_worker:
-  #   command: celery -A devit_proj_backend worker -l info
-  #   build: ./BACK
-  #   environment:
-  #     - CELERY_REDIS=${CELERY_RESULT_BACKEND}
-  #   depends_on:
-  #     - redis
-  #     - django
-  #   env_file:
-  #     - ./BACK/.env
-  #   volumes:
-  #     - ./BACK:/source
-  #   restart: on-failure
+  celery_worker:
+    command: celery -A devit_proj_backend worker -l info
+    build: ./BACK
+    environment:
+      - CELERY_REDIS=${CELERY_RESULT_BACKEND}
+    depends_on:
+      - redis
+      - django
+    env_file:
+      - ./BACK/.env
+    volumes:
+      - ./BACK:/source
+    restart: on-failure

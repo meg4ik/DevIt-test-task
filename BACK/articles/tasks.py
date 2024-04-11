@@ -12,7 +12,6 @@ def parse_and_create_articles(rss_url):
         link = entry.get('link', '')
         description = entry.get('description', '')
         published_date_parsed = entry.get('published_parsed')
-        media_link = entry.get('media:thumbnail', [{'url': ''}])[0]['url']
 
         if published_date_parsed:
             try:
@@ -22,7 +21,6 @@ def parse_and_create_articles(rss_url):
                     link=link,
                     description=description,
                     published_date=published_date,
-                    media_link=media_link
                 )
             except:
                 continue
