@@ -8,8 +8,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Traversy Media',
-  description: 'Web development tutorials and courses',
+  title: 'Article Management',
+  description: 'Article Management',
   keywords:
     'web development, web design, javascript, react, node, angular, vue, html, css',
 };

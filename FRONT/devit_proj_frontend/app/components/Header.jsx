@@ -6,7 +6,7 @@ const Header = () => {
     <header className='header'>
       <div className='container'>
         <div className='logo'>
-          <Link href='/'>Traversy Media</Link>
+          <Link href='/'>Article Management</Link>
         </div>
         <div className='links'>
           <RequireAuthentication>
