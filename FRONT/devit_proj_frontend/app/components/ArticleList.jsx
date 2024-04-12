@@ -79,9 +79,9 @@ const ArticleList = () => {
         ))}
       </ul>
       <div className="flex justify-between mt-8">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
         <span>{currentPage} / {totalPages}</span>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
       </div>
     </div>
   );

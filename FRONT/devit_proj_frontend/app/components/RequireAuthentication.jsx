@@ -2,15 +2,15 @@
 import { useEffect, useState } from 'react';
 
 const fetchAuthentication = async () => {
-  const accessToken = localStorage.getItem('accessToken');
-  if (!accessToken) {
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
     return false;
   }
 
   try {
     const response = await fetch('http://127.0.0.1:8088/api/check-authentication/', {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${token}`,
       },
     });
     return response.ok;
