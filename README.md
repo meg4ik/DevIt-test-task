@@ -30,13 +30,13 @@ Environment: Docker, Docker Compose
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your_username/your_project.git
+    git clone https://github.com/meg4ik/DevIt-test-task.git
     ```
 
 2. Change directory to the project folder:
 
     ```bash
-    cd your_project
+    cd DevIt-test-task
     ```
 
 3. Create .env file based on .env_example in /BACK directory
